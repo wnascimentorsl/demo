@@ -13,6 +13,7 @@ if ($uri === '/'){
 }
 */
 
+
 $routes = [
 '/' => 'controllers/index.php',
 '/about' => 'controllers/about.php',
@@ -21,4 +22,10 @@ $routes = [
 
 if (array_key_exists($uri, $routes)){
     require $routes[$uri];
-};
+} else {
+    http_response_code(404);
+
+    echo "sorry. Not found";
+
+    die();
+}
