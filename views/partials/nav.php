@@ -10,8 +10,8 @@
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <!-- <a href="/" class= </*?php if($_SERVER['REQUEST_URI']=== '/'){echo 'bg-gray-900 text-white';} else { echo 'text-gray-300; '} ?>"text-gray-300 hover:bg-gray-700 rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a*/> -->
               <a href="/" class=" <?= urlIs('/') ? 'bg-gray-900' : 'text-white' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Home</a>
-              <a href="/about.php" class="<?= $_SERVER['REQUEST_URI'] === '/about' ? 'bg-gray-900' : 'text-white' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
-              <a href="/contact.php" class="<?= $_SERVER['REQUEST_URI'] === '/contact' ? 'bg-gray-900' : 'text-white' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact</a>            
+              <a href="/about" class="<?= $_SERVER['REQUEST_URI'] === '/about' ? 'bg-gray-900' : 'text-white' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">About</a>
+              <a href="/contact" class="<?= $_SERVER['REQUEST_URI'] === '/contact' ? 'bg-gray-900' : 'text-white' ?> text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact</a>            
             </div>
           </div>
         </div>
