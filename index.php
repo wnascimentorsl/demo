@@ -1,14 +1,11 @@
 <?php
 
 require "functions.php";
+require "Database.php";
 
-$dsn = "pgsql:host=localhost;port=5432;user='postgres';password='postgres';dbname=demo";
+$db = new Database();
+$posts = $db->query("select * from posts")->fetch(PDO::FETCH_ASSOC);
 
-$pdo = new PDO($dsn); //data
-
-$statement = $pdo->prepare("select * from posts");
-$statement -> execute();
-
-$posts = $statement->fetchAll();
 
 dd($posts);
+//dd($posts);
