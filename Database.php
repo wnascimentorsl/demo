@@ -2,17 +2,28 @@
 
 // Connect to the database, and execute a query
 class Database {
-    public $connection;
-    public function __construct()
-    {
-        $dsn = "pgsql:host=localhost;port=5432;user='postgres';password='postgres';dbname=demo";
 
-        $this->connection = new PDO($dsn); //data
+    public $connection;
+
+    public function __construct($config, $username = 'postgres', $password = 'postgres')
+    {
+       // $dsn = "pgsql:host={$config['host']};
+       //        port={$config['port']};
+       //         user='postgres';
+       //        password='postgres';
+       //         dbname={$config['dbname']}";
+        $dsn = 'pgsql:' . http_build_query($config, '', ';');
+
+        $this->connection = new PDO($dsn, $username, $password, [
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+    ]);
+
+    
     }
-    public function query($query)
+    public function query($query, $params = [])
     {
       $statement = $this->connection->prepare($query);
-      $statement -> execute();
+      $statement -> execute($params);
 
     return $statement;
     }
