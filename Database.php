@@ -7,11 +7,7 @@ class Database {
 
     public function __construct($config, $username = 'postgres', $password = 'postgres')
     {
-       // $dsn = "pgsql:host={$config['host']};
-       //        port={$config['port']};
-       //         user='postgres';
-       //        password='postgres';
-       //         dbname={$config['dbname']}";
+
         $dsn = 'pgsql:' . http_build_query($config, '', ';');
 
         $this->connection = new PDO($dsn, $username, $password, [
