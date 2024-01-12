@@ -9,7 +9,13 @@
 
 <main>
   <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-      Notes
+      <?php foreach ($notes as $note) : ?>
+        <li>
+          <a href="/note?id= <?php echo $note['id'] ?>" class="text-blue-500 hover:underline">
+            <?php echo $note['body'] ?>
+          </a>  
+        </li>
+       <? endforeach; ?> 
   </div>
 </main>
 

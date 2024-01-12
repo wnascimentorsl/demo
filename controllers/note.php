@@ -6,8 +6,6 @@ $db = new Database($config['database']);
 
 $heading = 'Note';
 
-$id = $_GET['id'];
+$note = $db->query('select * from notes where id = :id', ['id' => $_GET['id']])->fetch();
 
-$notes = $db->query('select * from note where user_id = 1')->fetchAll();
-
-require "views/notes.view.php";
+require "views/note.view.php";
