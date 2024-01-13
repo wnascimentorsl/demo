@@ -15,7 +15,7 @@
             <?php echo $note['body'] ?>
           </a>  
         </li>
-       <? endforeach; ?> 
+       <?php endforeach; ?> 
   </div>
 </main>
 
