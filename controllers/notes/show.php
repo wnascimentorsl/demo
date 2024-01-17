@@ -15,7 +15,9 @@ authorize($note['user_id'] === $currentUserId);
 
 
 require view("notes/show/view.php", [
+
     'heading' => 'Note',
+    
     'note' => $note
 ]);
 

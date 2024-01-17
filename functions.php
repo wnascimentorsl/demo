@@ -25,7 +25,7 @@ function base_path($path)
 
 function view($path, $attributes = [])
 {
-    extract ($attributes);
+    extract($attributes);
 
     return base_path('views/' . $path); //views/index.view.php
 }
