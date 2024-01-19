@@ -13,8 +13,6 @@ $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-
-
     if (! Validator::string($_POST['body'], 1, 350)){
         $errors['body'] = 'A body of no more than 350 characters is required';
     }
