@@ -12,7 +12,7 @@ spl_autoload_register(function ($class){
 });
 
 
-new \Core\Router();
+$router = new \Core\Router();
 
 
 $routes = require base_path('routes.php');

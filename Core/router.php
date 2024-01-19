@@ -3,7 +3,7 @@
 
 namespace Core;
 
-class router{
+class Router{
 
     protected $routes = [];
 
@@ -22,7 +22,16 @@ class router{
         $this->routes[] = [
             'uri' => $uri,
             'controllers' => $controllers,
-            'method' => 'GET'
+            'method' => 'POST'
+        ];
+    }
+
+    public function delete($uri , $controllers)
+    {
+        $this->routes[] = [
+            'uri' => $uri,
+            'controllers' => $controllers,
+            'method' => 'DELETE'
         ];
     }
 
@@ -31,7 +40,7 @@ class router{
         $this->routes[] = [
             'uri' => $uri,
             'controllers' => $controllers,
-            'method' => 'GET'
+            'method' => 'PATCH'
         ];
     }
 
@@ -40,16 +49,16 @@ class router{
         $this->routes[] = [
             'uri' => $uri,
             'controllers' => $controllers,
-            'method' => 'GET'
+            'method' => 'PUT'
         ];
     }
 
-    public function route($uri)
+    public function route($uri, $method)
     {
         {
           foreach ($this->routes as $route){
-            if ($route['uri'] === $uri $$ $route['method'] === strtoupper($method)){
-                return require base_path($route['controller']);
+            if ($route['uri'] === $uri && $route['method'] === strtoupper($method)){
+                return require base_path($route['controllers']);
             }
           }
         }
