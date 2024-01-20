@@ -4,7 +4,7 @@ use Core\Validator;
 use Core\App;
 use Core\Database;
 
-$db = App::resolve('Database::class');
+$db = App::resolve(Database::class);
 
 $errors = [];
 
@@ -19,8 +19,7 @@ if (! empty($errors)) {
     ]);
 }
 
-$db->query('INSERT INTO notes(id, body, user_id) VALUES (:id, :body, :user_id)', [
-    'id' => 1,
+$db->query('INSERT INTO notes(body, user_id) VALUES (:body, :user_id)', [
     'body' => $_POST['body'],
     'user_id' => 1
 ]);
