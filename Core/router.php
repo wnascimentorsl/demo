@@ -3,7 +3,13 @@
 
 namespace Core;
 
-class Router{
+use Core\Middleware\Authenticated;
+use Core\Middleware\Guest;
+use Core\Middleware\Middleware;
+
+
+class Router
+{
 
     protected $routes = [];
 
@@ -12,45 +18,55 @@ class Router{
         $this->routes[] = [
             'uri' => $uri,
             'controllers' => $controllers,
-            'method' => $method
+            'method' => $method,
+            'middleware' => null
         ];
+
+        return $this;
     }
 
-    public function get($uri , $controllers)
+    public function get($uri, $controllers)
     {
-        $this->add('GET', $uri, $controllers);          
+        return $this->add('GET', $uri, $controllers);
     }
 
-    public function post($uri , $controllers)
+    public function post($uri, $controllers)
     {
-        $this->add('POST', $uri, $controllers);    
+        return $this->add('POST', $uri, $controllers);
     }
 
-    public function delete($uri , $controllers)
+    public function delete($uri, $controllers)
     {
-        $this->add('DELETE', $uri, $controllers);    
+        return $this->add('DELETE', $uri, $controllers);
     }
 
-    public function patch($uri , $controllers)
+    public function patch($uri, $controllers)
     {
-        $this->add('PATCH', $uri, $controllers);    
+        return $this->add('PATCH', $uri, $controllers);
     }
 
-    public function put($uri , $controllers)
+    public function put($uri, $controllers)
     {
-        $this->add('PUT', $uri, $controllers);    
+        return $this->add('PUT', $uri, $controllers);
+    }
+
+    public function only($key)
+    {
+        $this->routes[array_key_last($this->routes)]['middleware'] = $key;
+
+        return $this;
     }
 
     public function route($uri, $method)
-    {
-        {
-          foreach ($this->routes as $route){
-            if ($route['uri'] === $uri && $route['method'] === strtoupper($method)){
-                return require base_path($route['controllers']);
-            }
-          }
-        }
+    { {
+            foreach ($this->routes as $route) {
+                if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+                    Middleware::resolve($route['middleware']);
 
+                    return require base_path($route['controllers']);
+                }
+            }
+        }
         $this->abort();
     }
 
@@ -63,7 +79,3 @@ class Router{
         die();
     }
 }
-
-
-
-
