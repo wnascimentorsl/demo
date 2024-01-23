@@ -9,7 +9,7 @@
 
 <main>
   <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-      Hello, <?php echo $_SESSION['user']['email'] ?>Home
+      Hello, <?php echo $_SESSION['user']['email'] ?? 'Guest' ?>
   </div>
 </main>
 
