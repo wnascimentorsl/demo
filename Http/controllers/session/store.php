@@ -35,7 +35,7 @@ if ($user) {
             'email' => $email
         ]);
     
-        header('location : /');
+        header('location: /');
         exit();
     }
 }
