@@ -3,6 +3,7 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
+use Core\Session;
 
 $db = App::resolve(Database::class);
 
@@ -37,7 +38,7 @@ if ($user) {
         'password' => password_hash($password, PASSWORD_BCRYPT) // NEVER store database passwords in clear text. We'll fix this in the login form episode. :)
     ]);
 
-  login($user);
+    Session::login($user);
 
     header('location: /');
     exit();
