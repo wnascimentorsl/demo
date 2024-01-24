@@ -1,6 +1,5 @@
 <?php
 
-use Core\Authenticator;
 use Core\Session;
 
 Session::logout();

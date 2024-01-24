@@ -1,28 +1,25 @@
 <?php
 
 use Core\Authenticator;
-use Http\Forms\LoginForm;
 use Core\Session;
-
+use Http\Forms\LoginForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$errors = [];
-
-$fornm = new LoginForm();
+$form = new LoginForm();
 
 if ($form->validate($email, $password)) {
-    $auth = new Authenticator();
-
-    if ($auth->attempt($email, $password)) {
+    if ((new Authenticator)->attempt($email, $password)) {
         redirect('/');
     }
+
+    $form->error('email', 'No matching account found for that email address and password.');
 }
 
-$form->error('email', 'No matching account or password found for that email address.');
-
-Session::flash('errors', $$form->errors());
-
+Session::flash('errors', $form->errors());
+Session::flash('old', [
+    'email' => $_POST['email']
+]);
 
 return redirect('/login');

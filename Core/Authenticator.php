@@ -2,14 +2,12 @@
 
 namespace Core;
 
-use Core\Session;
-
 class Authenticator
 {
-
     public function attempt($email, $password)
     {
-        $user = App::resolve(Database::class)->query('select * from users where email = :email', [
+        $user = App::resolve(Database::class)
+            ->query('select * from users where email = :email', [
             'email' => $email
         ])->find();
 
@@ -22,12 +20,12 @@ class Authenticator
                 return true;
             }
         }
+
         return false;
     }
 
     public function login($user)
     {
-
         $_SESSION['user'] = [
             'email' => $user['email']
         ];
