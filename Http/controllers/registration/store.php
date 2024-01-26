@@ -3,7 +3,7 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
-use Core\Session;
+use Core\Authenticator;
 
 $db = App::resolve(Database::class);
 
@@ -35,10 +35,10 @@ if ($user) {
 } else {
     $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
         'email' => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT) // NEVER store database passwords in clear text. We'll fix this in the login form episode. :)
+        'password' => password_hash($password, PASSWORD_BCRYPT)
     ]);
 
-    Session::login($user);
+    (new Authenticator)->login($user);
 
     header('location: /');
     exit();

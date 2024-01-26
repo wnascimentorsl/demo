@@ -22,4 +22,4 @@ Session::flash('old', [
     'email' => $_POST['email']
 ]);
 
-redirect('/login');
+return redirect('/login');
